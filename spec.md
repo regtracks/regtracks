@@ -28,9 +28,11 @@
 
             1. Some characters must be escaped throughout a schema, even if appearing in a literal. These are given in appendix B.
 
+            2. Rules 3.1.2.2.1-2 also apply to string literals.
+
         2. To match a set of values, the keyword `any` should be used, followed by a space and then the comma-delimited set that can be matched, e.g. `any h,t,p`.
 
-            1. Whitespace may appear between commas, since escapes and special sets are provided for whitespace (see 3.1.2.1.1 and appendix A).
+            1. Since escapes and special sets are provided for whitespace (see 3.1.2.1.1 and appendix A), whitespace may appear between commas but it has no semantic value.
 
             2. Single characters need not be enclosed in brackets in a set, but any string literals must be within brackets, e.g. `any h,p,(mouse),9`
 
@@ -43,6 +45,8 @@
             4. If a non-bracketed alphanumeric string (allowing underscores) is an element in the set of values, then the symbol with the given name will be looked up. If the symbol refers to a character set, it will be included in the set of values. An error will occur if no such symbol exists or if it refers to a pattern instead of a character set.
 
                 1. Some special sets are built-in, and are given in appendix A.
+
+            5. Some non-whitespace value must appear between commas in a character set.
 
         3. The keyword `none` can be used in the place of `any` to match anything except for the values specified, e.g. `none f-h,(cat),z` will match all the characters in `mouse` but not all of `scatman`. All the rules given in 3.1.2.x also apply to the set passed to `none`. Line-ending characters will not be matched [TODO].
 
@@ -70,31 +74,33 @@
 
     3. A prefix modifies a rule or block, and is seperated by a space from a rule it precedes.
 
-        1. If used before a single rule, a prefix comes on the same line as a rule, before the main body of the rule. In this case, the prefix applies to the rule only.
+        1. If a prefix is used immediately before a rule, it must be a 'matching' rule.
 
-        2. If used before a block-opening brace `{`, the prefix applies to the entire block.
+        2. If used before a single rule, a prefix comes on the same line as a rule, before the main body of the rule. In this case, the prefix applies to the rule only.
 
-        3. The prefix `optionally` allows a rule or block to be skipped. If a rule or block can be matched with this prefix can be matched, it is matched, the highest-up rule being matched first.
+        3. If used before a block-opening brace `{`, the prefix applies to the entire block.
 
-        4. The prefix `or` allows a rule or block to be used as a match instead of the previous rule or block. This allows 'branching' as seen in railroad diagrams.
+        4. The prefix `optionally` allows a rule or block to be skipped. If a rule or block can be matched with this prefix can be matched, it is matched, the highest-up rule being matched first.
 
-            1. If `or` is used immediately before a rule, it must be a 'matching' rule.
+        5. The prefix `or` allows a rule or block to be used as a match instead of the previous rule or block. This allows 'branching' as seen in railroad diagrams.
 
-            2. `or` must follow a block or other rule - it can never be attached to the first rule in a block or pattern.
+            1. `or` must follow a block or other rule - it can never be attached to the first rule in a block or pattern.
 
-        5. The prefix `after` is specifies a rule that must be matched to allow a 'repetition' rule to repeat back to the start. It must be followed by a single rule or a block, e.g. `after any a-z` or `after { # some pattern goes below`.
+        6. The prefix `after` is specifies a rule that must be matched to allow a 'repetition' rule to repeat back to the start. It must be followed by a single rule or a block, e.g. `after any a-z` or `after { # some pattern goes below`.
 
             1. The prefix `after` must prefix a rule that follows a repetition rule.
 
-        6. The prefix `optionally` may be used in conjunction with `or` and `after`, but `or` must never be used with `after`.
+        7. The prefix `optionally` may be used in conjunction with `or` and `after`, but `or` must never be used with `after`.
 
     4. The suffix `as` specifies that any characters matched should be stored under the identifier given.
 
         1. `as` can only come after a 'matching' rule or after the end of a block, e.g. `any a to z as name`, where `name` is the identifier.
 
-        2. The same identifier can be used in multiple places. While a pattern is in execution, any characters matching collected with a given identifier should be stored in a string, sequentially. Once a pattern has finished matching, the next time it is executed, any matches under the same identifier should be stored in a seperate string (although still under the same identifier name).
+        2. The identifier must be at least one character long and alphanumeric (allowing underscores).
 
-        3. Any strings collected under identifiers should be discarded if a pattern does not reach its final delimiter. Only when a pattern reaches this delimiter should any collected strings be 'saved'.
+        3. The same identifier can be used in multiple places. While a pattern is in execution, any characters matching collected with a given identifier should be stored in a string, sequentially. Once a pattern has finished matching, the next time it is executed, any matches under the same identifier should be stored in a seperate string (although still under the same identifier name).
+
+        4. Any strings collected under identifiers should be discarded if a pattern does not reach its final delimiter. Only when a pattern reaches this delimiter should any collected strings be 'saved'.
 
     5. A brace `{` opens a block. Rules grouped in a block can be prefixed (see 3.3), suffixed (3.4), or used with a repetition rule (3.2).
 
@@ -122,7 +128,7 @@
 
     5. Symbol names cannot start with a number.
 
-[TODO pattern flags?]
+    6. Symbols may not be defined more than once.
 
 6. A character set can be defined outside a pattern, allowing for reuse. It must be a comma-delimited list with the same specification as 3.1.2. Keywords are not allowed in this context.
 
@@ -131,6 +137,8 @@
 7. A variable may be used in a string literal, e.g. `($name)` where `name` is replaced by the name of the variable.
 
     1. Variables should be passed to the parser by name when before it parses the text.
+
+    2. A variable name must be alphanumeric (allowing underscores).
 
 8. An error will occur if any of these rules are violated during schema parsing.
 
