@@ -15,6 +15,8 @@ One note before beginning: a schema is a string or file containing some patterns
 - [Character sets](#character-sets)
 - [Variables](#variables)
 - [Matching strings](#matching-strings)
+  - [`match`](#match)
+  - [`test`](#test)
 - [Options for matching](#options-for-matching)
   - [`global`](#global)
   - [Regex options](#regex-options)
@@ -251,7 +253,23 @@ Your RegTracks parser will allow you to pass the variables to it before matching
 
 ## Matching strings
 
-You can match strings using one of `match` or `test`.
+You can match strings using one of `match` or `test`, which are called 'matching methods'. They will be available once you have a 'track', which can be created using a schema.
+
+### `match`
+
+This method takes two required parameters: the text to attempt to match, and the entry point into the schema (i.e. the name of the pattern to use).
+
+It try to match the text. If it matches, it will return an object (or object-like structure) with the values:
+
+- match: the characters that were matched, as a string
+- index: the index of the first character in the match
+- collected: another object-like structure, with the keys being collection idents and the values being the strings collected under the relevant ident
+
+If no match can be made, a `null`-like will be returned.
+
+### `test`
+
+`test` works exactly like match, except that it returns only `true` or `false`, depending on whether a match was made.
 
 ## Options for matching
 
