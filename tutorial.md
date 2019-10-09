@@ -259,7 +259,7 @@ You can match strings using one of `match` or `test`, which are called 'matching
 
 This method takes two required parameters: the text to attempt to match, and the entry point into the schema (i.e. the name of the pattern to use).
 
-It try to match the text. If it matches, it will return an object (or object-like structure) with the values:
+It tries to match the text. If it matches, it will return an object (or object-like structure) with the values:
 
 - match: the characters that were matched, as a string
 - index: the index of the first character in the match
@@ -269,7 +269,7 @@ If no match can be made, a `null`-like will be returned.
 
 ### `test`
 
-`test` works exactly like match, except that it returns only `true` or `false`, depending on whether a match was made.
+`test` works exactly like `match`, except that it returns only `true` or `false`, depending on whether a match was made.
 
 ## Options for matching
 
@@ -283,12 +283,12 @@ If `global` is set to true, then after a match is made, the next time you use th
 
 Some options aren't included in RegTracks for design reasons:
 
-- `i` (ignore case), because this really only works for letters of the latin alphabet, and it's better to have case insensitivity explicitly shown with something like `a to z, A to Z`.
+- `i` (ignore case), because this really only works for letters of the latin alphabet, and it can be better to have case insensitivity explicitly shown with something like `a to z, A to Z`.
 
-- `m` (multiline), because in RegTrakcs all matches are multiline
+- `m` (multiline), because in RegTracks all matches are multiline
 
 - `s` (dotAll), because it's an unnecessary complication
 
-- `u` (unicode), because all unicode is allowed in RegTrakcs schemas
+- `u` (unicode), because all unicode is allowed in RegTracks schemas
 
 - `y` (sticky), because if you want to start from a certain index, just shorten your string
