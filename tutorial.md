@@ -14,6 +14,10 @@ One note before beginning: a schema is a string or file containing some patterns
 - [Collection (capture)](#collection-capture)
 - [Character sets](#character-sets)
 - [Variables](#variables)
+- [Matching strings](#matching-strings)
+- [Options for matching](#options-for-matching)
+  - [`global`](#global)
+  - [Regex options](#regex-options)
 
 ## Patterns
 
@@ -244,3 +248,29 @@ any a to z, ($delim) as foo
 ```
 
 Your RegTracks parser will allow you to pass the variables to it before matching.
+
+## Matching strings
+
+You can match strings using one of `match` or `test`.
+
+## Options for matching
+
+Your RegTracks parser will allow you to pass some options to it. These are:
+
+### `global`
+
+If `global` is set to true, then after a match is made, the next time you use the same pattern it will start searching from after the last match. Otherwise, the parser will stop after the first match and start searching from the beginning of the string each time.
+
+### Regex options
+
+Some options aren't included in RegTracks for design reasons:
+
+- `i` (ignore case), because this really only works for letters of the latin alphabet, and it's better to have case insensitivity explicitly shown with something like `a to z, A to Z`.
+
+- `m` (multiline), because in RegTrakcs all matches are multiline
+
+- `s` (dotAll), because it's an unnecessary complication
+
+- `u` (unicode), because all unicode is allowed in RegTrakcs schemas
+
+- `y` (sticky), because if you want to start from a certain index, just shorten your string

@@ -1,6 +1,6 @@
 # RegTracks
 
-Human-readable parsing for regular languages, based on railroad diagrams.
+RegTracks lets you write readable regex, based on railroad diagrams.
 
 See [the tutorial](./tutorial.md) for a more in-depth guide, and see [the specification](./spec.md) for the technical details.
 
@@ -100,7 +100,7 @@ parse_identifier        # we include the parse_identifier pattern here
 ||
 any valid_name as name  # we use a character set defined below
   times forever
-or digit as number      # 'or' allows another rule or block to be matched instead of the previous one
+or any digit as number  # 'or' allows another rule or block to be matched instead of the previous one
   times forever
 ||
 
