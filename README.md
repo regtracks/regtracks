@@ -118,7 +118,7 @@ Please, [read the tutorial](./tutorial.md)!
 
 At the moment there are only limited implementations of RegTracks:
 
-- [JavaScript](https://github.com/regtracks/regtracks-js) - also through [npm](https://example.com/)
+- [JavaScript](https://github.com/regtracks/regtracks-js) - also through [npm](https://www.npmjs.com/package/regtracks)
 
 - Python - coming soon, I hope :)
 
