@@ -1,6 +1,6 @@
 # The RegTracks Specification
 
-Version 1.1.0 (2019-10-11)
+Version 1.1.1 (2019-10-11)
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
@@ -228,6 +228,14 @@ Collection using `as` must not occur for units using prefixed by `not`.
 #### 3.3.8.3
 
 After checking a `not` block, the parser's position in the input string must be unchanged.
+
+#### 3.3.8.4
+
+The prefixes `not` and `optionally` must not be used in conjunction.
+
+#### 3.3.8.5
+
+A `not`-prefixed rule must not be repeated.
 
 ### 3.4
 
