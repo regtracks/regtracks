@@ -156,7 +156,7 @@ A rule repeated `forever` must match at least once unless it is optional.
 
 ### 3.3
 
-A prefix modifies a rule or block, and is seperated by a space from a rule it precedes.
+A prefix modifies a rule or block, and is seperated by a space from a rule it precedes. In this section, 'unit' refers to a rule or block.
 
 #### 3.3.1
 
@@ -172,19 +172,19 @@ If used before a block-opening brace `{`, the prefix applies to the entire block
 
 #### 3.3.4
 
-The prefix `optionally` allows a rule or block to be skipped. If a rule or block can be matched with this prefix can be matched, it is matched, the highest-up rule being matched first.
+The prefix `optionally` allows a rule or block to be skipped. If a unit with this prefix can be matched, it is matched, the highest-up rule being matched first.
 
 #### 3.3.5
 
-The prefix `or` allows a rule or block to be used as a match instead of the previous rule or block. This allows 'branching' as seen in railroad diagrams.
+The prefix `or` allows a unit to be used as a match instead of the previous rule or block. This allows 'branching' as seen in railroad diagrams.
 
 #### 3.3.5.1
 
-`or` must follow a block or other rule - it can never be attached to the first rule in a block or pattern.
+`or` must prefix a unit following another unit - it can never be attached to the first rule in a block or pattern.
 
 #### 3.3.6
 
-The prefix `after` specifies a rule that must be matched to allow a 'repetition' rule to repeat back to the start. It must be followed by a single rule or a block, e.g. `after any a-z` or `after { # some pattern goes below`.
+The prefix `after` specifies a unit that must be matched to allow a 'repetition' rule to repeat back to the start. It must be followed by a single unit, e.g. `after any a-z` or `after { # some pattern goes below`.
 
 This means that:
 
@@ -207,11 +207,27 @@ should be equivalent to:
 
 #### 3.3.6.1
 
-The prefix `after` must prefix a rule that follows a repetition rule.
+The prefix `after` must prefix a unit that follows a repetition rule.
 
 #### 3.3.7
 
 The prefix `optionally` may be used in conjunction with `or` and `after`, but `or` must not be used with `after`.
+
+#### 3.3.8
+
+The prefix `not` may be used to specify that a unit must not be matched for parsing to continue.
+
+#### 3.3.8.1
+
+Characters matched by `not` must not be included in the match - they are checked only to make sure that parsing can continue.
+
+#### 3.3.8.2
+
+Collection using `as` must not occur for units using prefixed by `not`.
+
+#### 3.3.8.3
+
+After checking a `not` block, the parser's position in the input string must be unchanged.
 
 ### 3.4
 
