@@ -1,6 +1,6 @@
 # The RegTracks Specification
 
-Version 1.1.2 (2019-10-12)
+Version 1.2.0 (2019-10-13)
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
@@ -335,13 +335,21 @@ A variable may be used in the format string literal, e.g. `($name)` where `name`
 
 ### 7.1
 
-Variables should be passed to the parser by name when before it parses the text.
-
-#### 7.1.1
-
-If a variable is found but no variable with its name has been provided, an error must occur.
+If some characters have been collected under an identifier using `as`, and the variable has the same name as the identifier, then the variable must be replaced with the characters collected under that identifier at that point in parsing.
 
 ### 7.2
+
+If no characters has have been collected under the same identifier using `as`, then a value passed to the parser should be used instead.
+
+### 7.2.1
+
+Variables should be passed to the parser by name when before it parses the text.
+
+#### 7.2.2
+
+If a variable is found but no variable with its name has been provided and no characters have been collected under the same identifier, an error must occur.
+
+### 7.3
 
 A variable name must be alphanumeric (allowing underscores).
 
