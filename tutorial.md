@@ -166,6 +166,17 @@ or {
 
 This will try to match a letter, but if it can't match a letter it will gladly accept a digit followed by a `!` instead. However, if a letter is matched, a digit cannot be matched after it. It's one or the other.
 
+`not` makes sure that a rule or block _doesn't_ match. If it does match, then matching fails. For example:
+
+```
+(abc)
+not (12)
+any digit
+  times 2
+```
+
+This matches `abc54` and `abc91` but not `abc12`.
+
 ## Repeats
 
 You can let rules and blocks be repeatably matched using the keyword `times`. For example:
@@ -249,7 +260,18 @@ You can use a variable anywhere where you'd use a literal (a word or character e
 any a to z, ($delim) as foo
 ```
 
-Your RegTracks parser will allow you to pass the variables to it before matching.
+If you have collected something (using `as`) under a certain identifier, you can use `$name` where `name` is the identifier to reference it. For example:
+
+```
+any a to z, A to Z as ident
+  times 3
+(-)
+($ident)
+```
+
+would match `abc-abc` and `FGc-FGc`.
+
+If you haven't collected anything under a given identifier, then your RegTracks parser will allow you to pass the default value of any variables to it before matching.
 
 ## Matching strings
 
