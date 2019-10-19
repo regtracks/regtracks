@@ -11,6 +11,7 @@ Contents:
 - [Reducing code duplication](#reducing-code-duplication)
 - [How do I learn more about how to use RegTracks?](#how-do-i-learn-more-about-how-to-use-regtracks)
 - [Available implementations](#available-implementations)
+- [Syntax highlighting and extensions](#syntax-highlighting-and-extensions)
 
 ## Regex is great... or is it?
 
@@ -125,3 +126,7 @@ At the moment there are only limited implementations of RegTracks:
 Like RegTracks? Make your own parser for _your_ favourite language and get in touch via PR or issue. If it satisifies [the specification](./spec.md), it'll be considered for addition to this list.
 
 If you're making your own, feel free to use the model that the JS one uses and rewrite it in a different language, or just start from scratch if you're feeling brave.
+
+## Syntax highlighting and extensions
+
+To highlight syntax in `.track` files, you can [install the VSCode extension for RegTracks](https://marketplace.visualstudio.com/items?itemName=jamesthistlewood.regtracks).
