@@ -17,6 +17,7 @@ One note before beginning: a schema is a string or file containing some patterns
 - [Matching strings](#matching-strings)
   - [`match`](#match)
   - [`test`](#test)
+  - [`replace`](#replace)
 - [Options for matching](#options-for-matching)
   - [`global`](#global)
   - [Regex options](#regex-options)
@@ -292,6 +293,10 @@ If no match can be made, a `null`-like will be returned.
 ### `test`
 
 `test` works exactly like `match`, except that it returns only `true` or `false`, depending on whether a match was made.
+
+### `replace`
+
+`replace` also works exactly like `match`, except that it will return the string with any matches replaced by a given replacement string.
 
 ## Options for matching
 
