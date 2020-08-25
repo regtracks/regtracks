@@ -1,6 +1,6 @@
 # The RegTracks Specification
 
-Version 1.2.0 (2019-10-13)
+Version 1.3.0 (2020-08-25)
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
@@ -355,7 +355,7 @@ A variable name must be alphanumeric (allowing underscores).
 
 ## 8
 
-Matching of strings must run according to this specification. Matching should be invoked by the user with one of two methods `match` and `test`, passing a string and options to the invoked method.
+Matching of strings must run according to this specification. Matching should be invoked by the user with one of the three methods `match`, `test` and `replace`, passing a string and options to the invoked method.
 
 ### 8.1
 
@@ -381,9 +381,13 @@ If no match is made, `null` or a language's equivalent should be returned.
 
 ### 8.4
 
+`replace` must parse the string according to the schema and return the string with matches, if any, replaced by a user-specified replacement string.
+
+### 8.5
+
 Options may be passed to the matching method. These are specified in this section.
 
-#### 8.4.1
+#### 8.5.1
 
 `global` is an option that determines what happens after a match is made. If set to `true`, after match is made the index of the first character after the match should be saved and used as the starting point for the next time a matching method is invoked. If set to `false` or not specified, matching starts from the beginning of the string each time.
 
