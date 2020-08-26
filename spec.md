@@ -1,6 +1,6 @@
 # The RegTracks Specification
 
-Version 1.3.0 (2020-08-25)
+Version 1.4.0 (2020-08-25)
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
@@ -382,6 +382,10 @@ If no match is made, `null` or a language's equivalent should be returned.
 ### 8.4
 
 `replace` must parse the string according to the schema and return the string with matches, if any, replaced by a user-specified replacement string.
+
+### 8.4.1
+
+`replace` should allow collections to be specified by their identifier in the replacement string using the syntax `$(name)`, where `name` is the identifier of the collected string to be subsituted for that position. In the event that the collection ident `name` does not exist, it should be ignored and treated as plain text.
 
 ### 8.5
 
