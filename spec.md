@@ -1,6 +1,6 @@
 # The RegTracks Specification
 
-Version 1.4.0 (2020-08-25)
+Version 1.4.0 (2020-08-26)
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
